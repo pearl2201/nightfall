@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450ede39c8c28ac4ea1dd847b7f0e0d1, type: 3}
+  m_Name: PolygonNavMeshExporter
+  m_EditorClassIdentifier: 
+  mapId: 12
+  startX: 5123
+  startZ: 34545
+  endX: 2
+  endZ: 1
