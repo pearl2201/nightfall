@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Pika.Base.Mathj.Geometry
 {
+    [Serializable]
     public class Vector3 : Vector<Vector3>
     {
         private static long serialVersionUID = 1L;

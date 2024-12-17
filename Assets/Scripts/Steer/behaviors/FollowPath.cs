@@ -15,6 +15,7 @@
  ******************************************************************************/
 
 using Pika.Base.Mathj.Geometry;
+using System.Diagnostics;
 
 /** {@code FollowPath} behavior produces a linear acceleration that moves the agent along the given path. First it calculates the
  * agent location based on the specified prediction time. Then it works out the position of the internal target based on the
@@ -105,7 +106,7 @@ public class FollowPath<T, P> : Arrive<T> where T : Vector<T> where P : PathPara
 
         // Offset it
         float targetDistance = distance + pathOffset;
-
+        UnityEngine.Debug.Log($"{distance} - {targetDistance}");
         // Calculate the target position
         path.calculateTargetPosition(internalTargetPosition, pathParam, targetDistance);
 

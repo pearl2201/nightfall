@@ -68,7 +68,8 @@ public class TriangleGraph : IndexedGraph<Triangle>
 
     public List<Connection<Triangle>> getConnections(Triangle fromNode)
     {
-        return (List<Connection<Triangle>>)(object)this.sharedEdges[fromNode];
+        var shareEdge = this.sharedEdges[fromNode];
+        return shareEdge.Cast<Connection<Triangle>>().ToList();
         // return (Array<Connection<Triangle>>) (Array<?>)
         // sharedEdges.getValueAt(fromNode.index);
     }

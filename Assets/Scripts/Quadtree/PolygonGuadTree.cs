@@ -345,7 +345,9 @@ namespace Pika.Ai.Quadtree
             {
                 return null;
             }
-            List<Polygon> list = nodes.getDatas().Select(n => n.getValue()).Where(p => p.isInnerPoint(position))
+            var temp = nodes.getDatas().Select(n => n.getValue());
+
+            var list = temp.Where(p => p.isInnerPoint(position))
                     .ToList();
             return list;
         }

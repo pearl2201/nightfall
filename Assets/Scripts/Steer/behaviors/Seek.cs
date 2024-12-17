@@ -28,24 +28,25 @@ using Pika.Base.Mathj.Geometry;
  * @param <T> Type of vector, either 2D or 3D, implementing the {@link Vector} interface
  *
  * @author davebaol */
-public class Seek<T> : SteeringBehavior<T> where T : Vector<T> { 
+public class Seek<T> : SteeringBehavior<T> where T : Vector<T>
+{
 
     /** The target to seek */
     protected Location<T> target;
 
     /** Creates a {@code Seek} behavior for the specified owner.
      * @param owner the owner of this behavior. */
-    public Seek(Steerable<T> owner): this(owner, null)
+    public Seek(Steerable<T> owner) : this(owner, null)
     {
-        
+
     }
 
     /** Creates a {@code Seek} behavior for the specified owner and target.
      * @param owner the owner of this behavior
      * @param target the target agent of this behavior. */
-    public Seek(Steerable<T> owner, Location<T> target): base(owner)
+    public Seek(Steerable<T> owner, Location<T> target) : base(owner)
     {
-        
+
         this.target = target;
     }
 
@@ -53,7 +54,11 @@ public class Seek<T> : SteeringBehavior<T> where T : Vector<T> {
     {
         // Try to match the position of the character with the position of the target by calculating
         // the direction to the target and by moving toward it as fast as possible.
-        steering.linear.set(target.getPosition()).sub(owner.getPosition()).nor().scl(getActualLimiter().getMaxLinearAcceleration());
+        var delta = target.getPosition().sub(owner.getPosition()).nor();
+        var max = getActualLimiter().getMaxLinearAcceleration();
+        delta = delta.scl(max);
+
+        steering.linear.set(delta);
 
         // No angular acceleration
         steering.angular = 0;

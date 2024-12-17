@@ -27,6 +27,8 @@ namespace Assets.Scripts
 
             mesh.RecalculateNormals();
             meshFilter.mesh = mesh;
+            
+            meshFilter.GetComponent<MeshCollider>().sharedMesh = mesh;
             player.SetNavMesh(pv);
         }
     }

@@ -62,7 +62,8 @@ public class PolygonGraph : IndexedGraph<Polygon>
 
     public List<Connection<Polygon>> getConnections(Polygon fromNode)
     {
-        return (List<Connection<Polygon>>)(object)sharedEdges[fromNode];
+        var temp = sharedEdges[fromNode];
+        return temp.Cast<Connection<Polygon>>().ToList();
     }
 
 

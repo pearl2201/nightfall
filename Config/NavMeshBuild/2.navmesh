@@ -1,9 +1,9 @@
 {
     "mapID": 2,
     "startX": 0,
-    "startZ": 0,
+    "startZ": -9,
     "endX": 9,
-    "endZ": 10,
+    "endZ": 1,
     "pathTriangles": [
         0,
         1,
