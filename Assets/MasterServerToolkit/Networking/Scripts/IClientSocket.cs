@@ -66,7 +66,7 @@ namespace MasterServerToolkit.Networking
         /// <param name="port"></param>
         /// <param name="timeoutMillis"></param>
         /// <returns></returns>
-        Task<IClientSocket> Connect(string ip, int port, float timeoutSeconds);
+        IClientSocket Connect(string ip, int port, float timeoutSeconds);
 
         /// <summary>
         /// Starts connecting to another socket
@@ -74,7 +74,7 @@ namespace MasterServerToolkit.Networking
         /// <param name="ip"></param>
         /// <param name="port"></param>
         /// <returns></returns>
-        Task<IClientSocket> Connect(string ip, int port);
+        IClientSocket Connect(string ip, int port);
 
         /// <summary>
         /// Invokes a callback when connection is established, or after the timeout

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
+using UnityEngine;
 using WebSocketSharp;
 namespace MasterServerToolkit.Networking
 {
@@ -201,31 +202,6 @@ namespace MasterServerToolkit.Networking
             Connect(Address, Port);
         }
 
-        public void DoUpdate()
-        {
-            if (webSocket == null)
-            {
-                return;
-            }
-
-            // Get all received bytes
-            byte[] data = webSocket.Recv();
-
-            while (data != null)
-            {
-              
-                data = webSocket.Recv();
-            }
-
-            wasConnected = IsConnected;
-            IsConnected = webSocket.IsConnected;
-
-            // Check if status changed
-            if (wasConnected != IsConnected)
-            {
-                SetStatus(IsConnected ? ConnectionStatus.Connected : ConnectionStatus.Disconnected);
-            }
-        }
 
         private void SetStatus(ConnectionStatus status, bool fireEvent = true)
         {
@@ -259,8 +235,6 @@ namespace MasterServerToolkit.Networking
                     if (Status != ConnectionStatus.Disconnected)
                     {
                         Status = ConnectionStatus.Disconnected;
-
-                        CloseCode = (ushort)(webSocket != null ? webSocket.CloseCode : 0);
 
                         if (fireEvent)
                             OnConnectionCloseEvent?.Invoke(this);
@@ -302,6 +276,8 @@ namespace MasterServerToolkit.Networking
 
             webSocket.OnOpen += () =>
             {
+                wasConnected = IsConnected;
+                IsConnected = true;
                 SetStatus(ConnectionStatus.Connected, true);
             };
 
@@ -312,6 +288,9 @@ namespace MasterServerToolkit.Networking
 
             webSocket.OnClose += (e) =>
             {
+                wasConnected = IsConnected;
+                IsConnected = false;
+                CloseCode = (ushort)e;
                 SetStatus(ConnectionStatus.Disconnected, true);
             };
 
